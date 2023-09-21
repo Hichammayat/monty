@@ -1,13 +1,13 @@
 #include "monty.h"
 /**
-* func_execute - executes the operation code
+* fun_execute - executes the operation code
 * @stack: head linked list - stack
 * @count: line_counter
 * @file: poiner to monty file
 * @content: line content
 * Return: no return
 */
-int func_execute(char *content, stack_t **stack, unsigned int count, FILE *file)
+int fun_execute(char *content, stack_t **stack, unsigned int count, FILE *file)
 {
 	instruction_t opst[] = {
 				{"push", func_push}, {"pall", func_pall}, {"pint", func_pint},
@@ -46,7 +46,7 @@ int func_execute(char *content, stack_t **stack, unsigned int count, FILE *file)
 	{ fprintf(stderr, "L%d: unknown instruction %s\n", count, ope);
 		fclose(file);
 		free(content);
-		free_stack(*stack);
+		free_the_stack(*stack);
 		exit(EXIT_FAILURE); }
 	return (1);
 }

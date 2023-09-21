@@ -1,5 +1,6 @@
 #include "monty.h"
-bus_T bus = {NULL, NULL, NULL, 0};
+#include <stdio.h>
+#define MAX_LINE_LENGTH 256
 /**
 * main - monty code interpreter
 * @argc: number of arguments
@@ -8,12 +9,8 @@ bus_T bus = {NULL, NULL, NULL, 0};
 */
 int main(int argc, char *argv[])
 {
-	unsigned int count = 0;
 	stack_t *stack = NULL;
-	char *content;
 	FILE *file;
-	size_t size = 0;
-	ssize_t line = 1;
 
 	if (argc != 2)
 	{
@@ -27,19 +24,33 @@ int main(int argc, char *argv[])
 		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
-	while (read_line > 0)
-	{
-		content = NULL;
-		line = getline(&content, &size, file);
-		bus.content = content;
-		count++;
-		if (line > 0)
-		{
-			execute(content, &stack, count, file);
-		}
-		free(content);
-	}
-	free_stack(stack);
+	process_lines(file, &stack);
+	free_the_stack(stack);
 	fclose(file);
 return (0);
+}
+/**
+ * process_lines - exécute le traitement de chaque ligne
+ * @file: Pointer to the Monty bytecode file.
+ * @stack: Pointer to the stack data structure.
+ * Return: nothing
+ */
+void process_lines(FILE *file, stack_t **stack)
+{
+	char line[MAX_LINE_LENGTH];
+	unsigned int count = 0;
+	size_t line_length = strlen(line);
+
+	while (fgets(line, sizeof(line), file) != NULL)
+	{
+		bus.content = line;
+		count++;
+
+		if (line_length > 0 && line[line_length - 1] == '\n')
+		{
+			line[line_length - 1] = '\0';
+		}
+
+		fun_execute(line, stack, count, file);
+	}
 }

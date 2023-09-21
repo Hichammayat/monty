@@ -7,7 +7,8 @@
 */
 void func_push(stack_t **head, unsigned int count)
 {
-	int flag = 0, n, K = 0;
+	int flag = 0, n;
+	int K = 0;
 
 	if (bus.arg != NULL)
 	{
@@ -34,25 +35,4 @@ void func_push(stack_t **head, unsigned int count)
 		addnode(head, n);
 	else
 		addqueue(head, n);
-}
-
-/**
- * func_pall - prints the element of the stack
- * @head: stack head
- * @count: cast to void
- * Return: nothing
-*/
-void func_pall(stack_t **head, unsigned int count)
-{
-	stack_t *h;
-	(void)count;
-
-	h = *head;
-	if (h == NULL)
-		return;
-	while (h)
-	{
-		printf("%d\n", h->n);
-		h = h->next;
-	}
 }

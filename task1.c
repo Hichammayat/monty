@@ -7,7 +7,7 @@
  */
 void func_print_top(stack_t **stack, unsigned int line_number)
 {
-	if (stack == NULL || *stack == NULL)
+	if (!stack || !*stack)
 		second_err(6, line_number);
 	printf("%d\n", (*stack)->n);
 }

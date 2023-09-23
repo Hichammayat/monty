@@ -8,7 +8,7 @@ void func_swap_nodes(stack_t **stack, unsigned int line_number)
 {
 	stack_t *tp;
 
-	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
+	if (!stack || !*stack || (*stack)->next == NULL)
 		third_err(8, line_number, "swap");
 	tp = (*stack)->next;
 	(*stack)->next = tp->next;

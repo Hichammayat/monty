@@ -8,12 +8,12 @@ void func_pop_top(stack_t **stack, unsigned int line_number)
 {
 	stack_t *tp;
 
-	if (stack == NULL || *stack == NULL)
+	if (!stack || !*stack)
 		third_err(7, line_number);
 
 	tp = *stack;
 	*stack = tp->next;
-	if (*stack != NULL)
+	if (*stack)
 		(*stack)->prev = NULL;
 	free(tp);
 }

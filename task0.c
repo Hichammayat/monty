@@ -8,13 +8,13 @@ void push_to_stack(stack_t **new_node, __attribute__((unused))unsigned int ln)
 {
 	stack_t *tp;
 
-	if (new_node == NULL || *new_node == NULL)
-		exit(EXIT_FAILURE);
-	if (head == NULL)
+	if (!head)
 	{
 		head = *new_node;
 		return;
 	}
+	if (!new_node || !*new_node)
+		exit(EXIT_FAILURE);
 	tp = head;
 	head = *new_node;
 	head->next = tp;
@@ -31,7 +31,7 @@ void print_all_stack(stack_t **stack, unsigned int line_number)
 	stack_t *tp;
 
 	(void) line_number;
-	if (stack == NULL)
+	if (!stack)
 		exit(EXIT_FAILURE);
 	tp = *stack;
 	while (tp != NULL)
@@ -40,5 +40,3 @@ void print_all_stack(stack_t **stack, unsigned int line_number)
 		tp = tp->next;
 	}
 }
-
-

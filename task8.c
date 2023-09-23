@@ -6,14 +6,14 @@
  */
 void func_mul_nodes(stack_t **stack, unsigned int line_number)
 {
-	int sum;
+	int summ;
 
-	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
+	if (!stack || !*stack || (*stack)->next == NULL)
 		third_err(8, line_number, "mul");
 
 	(*stack) = (*stack)->next;
-	sum = (*stack)->n * (*stack)->prev->n;
-	(*stack)->n = sum;
+	summ = (*stack)->n * (*stack)->prev->n;
+	(*stack)->n = summ;
 	free((*stack)->prev);
 	(*stack)->prev = NULL;
 }

@@ -9,7 +9,7 @@ void func_print_char(stack_t **stack, unsigned int line_number)
 {
 	int asc;
 
-	if (stack == NULL || *stack == NULL)
+	if (!stack || !*stack )
 		func_string_err(11, line_number);
 
 	asc = (*stack)->n;

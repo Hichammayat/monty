@@ -14,7 +14,7 @@ void func_read_file(FILE *fd)
 
 	for (line_num = 1; getline(&buff, &len, fd) != -1; line_num++)
 	{
-		format = parse_line(buff, line_num, format);
+		format = func_parse_line(buff, line_num, format);
 	}
 	free(buff);
 }

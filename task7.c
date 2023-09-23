@@ -8,7 +8,7 @@ void func_div_nodes(stack_t **stack, unsigned int line_number)
 {
 	int sum;
 
-	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
+	if (!stack || !*stack || (*stack)->next == NULL)
 		third_err(8, line_number, "div");
 
 	if ((*stack)->n == 0)

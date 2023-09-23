@@ -51,8 +51,6 @@ void first_err(int error_code, ...)
 void second_err(int error_code, ...)
 {
 	va_list ag;
-	char *oper;
-	int num;
 
 	va_start(ag, error_code);
 	switch (error_code)

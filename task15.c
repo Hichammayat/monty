@@ -26,7 +26,7 @@ void add_queue(stack_t **new_node, __attribute__((unused))unsigned int ln)
 {
 	stack_t *tp;
 
-	if (!new_node || !*new_node )
+	if (!new_node || !*new_node)
 		exit(EXIT_FAILURE);
 	if (head == NULL)
 	{

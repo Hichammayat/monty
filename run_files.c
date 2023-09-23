@@ -4,7 +4,7 @@
  * func_read_file - reads a file
  * @fd: pointer to file descriptor
  * Return: void
-i */
+ */
 
 void func_read_file(FILE *fd)
 {
@@ -20,10 +20,10 @@ void func_read_file(FILE *fd)
 }
 
 /**
- * parse_line - Separates each line into tokens to determine
+ * func_parse_line - divide each line into tokens to determine
  * which function to call
- * @buffer: line from the file
- * @line_number: line number
+ * @buff: line from the file
+ * @line_num: line number
  * @format:  storage format. If 0 Nodes will be entered as a stack.
  * if 1 nodes will be entered as a queue.
  * Return: Returns 0 if the opcode is stack. 1 if queue.
@@ -35,7 +35,7 @@ int func_parse_line(char *buff, int line_num, int format)
 	const char *delim = "\n ";
 
 	if (buff == NULL)
-		err(4);
+		second_err(4);
 
 	opcode = strtok(buff, delim);
 	if (opcode == NULL)
@@ -91,16 +91,16 @@ void lookFor_func(char *opcode, char *value, int ln, int format)
 	{
 		if (strcmp(opcode, func_list[i].opcode) == 0)
 		{
-			call_fun(func_list[i].f, opcode, value, ln, format);
+			call_func(func_list[i].f, opcode, value, ln, format);
 			flag = 0;
 		}
 	}
 	if (flag == 1)
-		err(3, ln, opcode);
+		first_err(3, ln, opcode);
 }
 
 /**
- * call_fun - Calls the required function.
+ * call_func - Calls the needed function.
  * @func: Pointer to the function that is about to be called.
  * @op: string representing the opcode.
  * @val: string representing a numeric value.
@@ -123,17 +123,17 @@ void call_func(op_func func, char *op, char *val, int ln, int format)
 			flag = -1;
 		}
 		if (val == NULL)
-			err(5, ln);
+			second_err(5, ln);
 		for (i = 0; val[i] != '\0'; i++)
 		{
 			if (isdigit(val[i]) == 0)
-				err(5, ln);
+				second_err(5, ln);
 		}
-		node = create_node(atoi(val) * flag);
+		node = create_the_node(atoi(val) * flag);
 		if (format == 0)
 			func(&node, ln);
 		if (format == 1)
-			add_to_queue(&node, ln);
+			add_queue(&node, ln);
 	}
 	else
 		func(&head, ln);
